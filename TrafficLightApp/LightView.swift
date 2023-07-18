@@ -18,9 +18,9 @@ struct LightView: View {
             .overlay(Circle().strokeBorder(color, lineWidth: 1))
             .shadow(color: color, radius: 40)
             .shadow(color: color, radius: 10)
-            .padding()
             .opacity(opacity)
             .saturation(1.3)
+            .padding()
     }
 }
 
