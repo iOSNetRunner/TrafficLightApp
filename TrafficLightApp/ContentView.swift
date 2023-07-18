@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    private let lightCarcass = CarcassView()
+    
     @State private var redLight = LightView(color: .red)
     @State private var yellowLight = LightView(color: .yellow)
     @State private var greenLight = LightView(color: .green)
@@ -23,9 +25,17 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack {
-                redLight
-                yellowLight
-                greenLight
+                ZStack {
+                    lightCarcass
+                        .shadow(color: .black, radius: 10)
+                    
+                    VStack {
+                        redLight
+                        yellowLight
+                        greenLight
+                    }
+                    .padding()
+                }
                 
                 Button(action: switchLights) {
                     Text(buttonTitle)
@@ -33,20 +43,20 @@ struct ContentView: View {
                         .fontWeight(.light)
                         .foregroundColor(.black)
                         .frame(width: 200, height: 40)
-                        .background(Color.white.gradient)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .background(Color.white)
+                        .cornerRadius(10)
                         .padding()
                 }
-                .padding(.top, 60)
+                .padding(.top, 30)
                 
                 Label("Tap count: \(tapCount)", systemImage: "hand.tap.fill")
                     .foregroundColor(.white)
-                    
             }
             .padding(.top, 40)
+            .padding(.bottom, 20)
         }
+        .background(Color.black.gradient)
     }
-    
     
     private func switchLights() {
         if buttonTitle == "START" {

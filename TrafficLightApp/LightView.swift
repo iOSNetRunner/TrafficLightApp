@@ -14,6 +14,7 @@ struct LightView: View {
     var body: some View {
         Circle()
             .fill(color.gradient)
+            .frame(width: 150)
             .overlay(Circle().strokeBorder(color, lineWidth: 1))
             .shadow(color: color, radius: 40)
             .shadow(color: color, radius: 10)
