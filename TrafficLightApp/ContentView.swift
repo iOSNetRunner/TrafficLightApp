@@ -84,7 +84,7 @@ struct ContentView: View {
     }
     
     private func isOn(_ bool: Bool) -> Double {
-        bool == true ? 1.0 : 0.1
+        bool == true ? 1.0 : 0.05
     }
 }
 

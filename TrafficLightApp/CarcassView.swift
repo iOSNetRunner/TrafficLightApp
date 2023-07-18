@@ -10,13 +10,12 @@ import SwiftUI
 struct CarcassView: View {
     var body: some View {
         Rectangle()
-            .frame(maxWidth: 200, idealHeight: 600, maxHeight: 500)
+            .frame(maxWidth: 200, idealHeight: 600)
             .foregroundColor(.black)
             .cornerRadius(30)
             .shadow(color: .black, radius: 10)
             .overlay(RoundedRectangle(cornerRadius: 30)
-                .stroke(Color(.white), lineWidth: 0.3)
-            )
+                .stroke(Color(.gray), lineWidth: 0.3))
     }
 }
 

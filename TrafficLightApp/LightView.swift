@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LightView: View {
     let color: Color
-    var opacity = 0.1
+    var opacity = 0.05
     
     var body: some View {
         Circle()
@@ -20,6 +20,7 @@ struct LightView: View {
             .shadow(color: color, radius: 10)
             .padding()
             .opacity(opacity)
+            .saturation(1.3)
     }
 }
 
