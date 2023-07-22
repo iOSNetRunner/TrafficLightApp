@@ -1,5 +1,5 @@
 //
-//  LightView.swift
+//  ColorCircleView.swift
 //  TrafficLightApp
 //
 //  Created by Dmitrii Galatskii on 18.07.2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct LightView: View {
+struct ColorCircleView: View {
     let color: Color
-    var opacity = 0.05
+    let opacity: Double
     
     var body: some View {
         Circle()
@@ -20,12 +20,11 @@ struct LightView: View {
             .shadow(color: color, radius: 10)
             .opacity(opacity)
             .saturation(1.3)
-            .padding()
     }
 }
 
-struct LightView_Previews: PreviewProvider {
+struct ColorCircleView_Previews: PreviewProvider {
     static var previews: some View {
-        LightView(color: .red)
+        ColorCircleView(color: .red, opacity: 0.3)
     }
 }

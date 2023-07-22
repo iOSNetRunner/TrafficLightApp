@@ -10,12 +10,7 @@ import SwiftUI
 struct ContentView: View {
     private let lightCarcass = CarcassView()
     
-    @State private var redLight = LightView(color: .red)
-    @State private var yellowLight = LightView(color: .yellow)
-    @State private var greenLight = LightView(color: .green)
-    
-    @State private var currentColor: Color = .red
-    @State private var tapCount = 0
+    @State private var currentColor: Color = .black
     @State private var buttonTitle = "START"
     
     var body: some View {
@@ -30,11 +25,16 @@ struct ContentView: View {
                         .shadow(color: .black, radius: 10)
                     
                     VStack {
-                        redLight
-                        yellowLight
-                        greenLight
+                        ColorCircleView(color: .red,
+                                        opacity: currentColor == .red ? 1 : 0.1)
+                        .padding()
+                        ColorCircleView(color: .yellow,
+                                        opacity: currentColor == .yellow ? 1 : 0.1)
+                        .padding()
+                        ColorCircleView(color: .green,
+                                        opacity: currentColor == .green ? 1 : 0.1)
+                        .padding()
                     }
-                    .padding()
                 }
                 
                 Button(action: switchLights) {
@@ -49,13 +49,12 @@ struct ContentView: View {
                 }
                 .padding(.top, 30)
                 
-                Label("Tap count: \(tapCount)", systemImage: "hand.tap.fill")
-                    .foregroundColor(.white)
+                
             }
             .padding(.top, 40)
             .padding(.bottom, 20)
         }
-        .background(Color.black.gradient)
+        
     }
     
     private func switchLights() {
@@ -63,29 +62,16 @@ struct ContentView: View {
             buttonTitle = "NEXT"
         }
         
-        tapCount += 1
-        
         switch currentColor {
-        case redLight.color:
-            greenLight.opacity = isOn(false)
-            redLight.opacity = isOn(true)
-            currentColor = yellowLight.color
-            
-        case yellowLight.color:
-            redLight.opacity = isOn(false)
-            yellowLight.opacity = isOn(true)
-            currentColor = greenLight.color
-            
+        case .red:
+            currentColor = .yellow
+        case .yellow:
+            currentColor = .green
         default:
-            greenLight.opacity = isOn(true)
-            yellowLight.opacity = isOn(false)
-            currentColor = redLight.color
+            currentColor = .red
         }
     }
     
-    private func isOn(_ bool: Bool) -> Double {
-        bool == true ? 1.0 : 0.05
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
